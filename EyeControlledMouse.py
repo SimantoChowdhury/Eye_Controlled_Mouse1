@@ -26,14 +26,12 @@ while True:
                 screen_y = screen_h / frame_h * y
                 pyautogui.moveTo(screen_x, screen_y)
 
-        # Blink detection using left eye landmarks
         left = [landmarks[145], landmarks[159]]
         for landmark in left:
             x = int(landmark.x * frame_w)
             y = int(landmark.y * frame_h)
             cv2.circle(frame, (x, y), 3, (0, 255, 255), -1)
 
-        # Check blink
         if (left[0].y - left[1].y) < 0.004:
             pyautogui.click()
             pyautogui.sleep(1)
